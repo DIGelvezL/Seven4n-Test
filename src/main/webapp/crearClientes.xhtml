@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Crear Clientes</title>
+</h:head>
+<h:body>
+	<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" template="/WEB-INF/plantillas/plantilla.xhtml">
+		<ui:define name="content">
+			<p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">
+				<f:facet name="start">
+					<h:graphicImage library="images" name="ajaxloading.gif" />
+				</f:facet>
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+			
+			<h:form id="formulario" enctype="multipart/form-data">
+				<script type="text/javascript">
+					function limpiarForm(){
+						document.getElementById("formulario").reset();
+					}
+				</script>
+				
+				<p:growl id="messages" showDetail="true" />
+			    <p:panel id="panel" header="New Cliente">
+			        
+			        <p:messages id="msgs" />
+			 
+			        <h:panelGrid id="grid" columns="3" cellpadding="5">
+			            <p:outputLabel for="cedula" value="Cedula:" />
+			            <p:inputText id="cedula" value="#{crearClientesBean.cdcliente}" required="false" label="Cedula">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgCedula" event="keyup" />
+			            </p:inputText>
+			            <p:message for="cedula" id="msgCedula" display="icon" />
+			 
+			            <p:outputLabel for="nombre" value="Nombre:" />
+			            <p:inputText id="nombre" value="#{crearClientesBean.dsnombre}" required="false" label="Nombre">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgNombre" event="keyup" />
+			            </p:inputText>
+			            <p:message for="nombre" id="msgNombre" display="icon" />
+			            
+			            <p:outputLabel for="direccion" value="Dirección:" />
+			            <p:inputText id="direccion" value="#{crearClientesBean.dsdireccion}" required="false" label="Direccion">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgDireccion" event="keyup" />
+			            </p:inputText>
+			            <p:message for="direccion" id="msgDireccion" display="icon" />
+			            
+			            <p:outputLabel for="usuario" value="Usuario:" />
+			            <p:inputText id="usuario" value="#{crearClientesBean.cdusuario}" required="false" label="Usuario">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgUsuario" event="keyup" />
+			            </p:inputText>
+			            <p:message for="usuario" id="msgUsuario" display="icon" />
+			            
+			            <p:outputLabel for="email" value="eMail:" />
+			            <p:inputText id="email" value="#{crearClientesBean.dsmail}" required="false" label="eMail">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgeMail" event="keyup" />
+			            </p:inputText>
+			            <p:message for="email" id="msgeMail" display="icon" />
+			            
+			            <p:outputLabel for="telefono" value="Telefono:" />
+			            <p:inputText id="telefono" value="#{crearClientesBean.cdtelefono}" required="false" label="Telefono">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgTelefono" event="keyup" />
+			            </p:inputText>
+			            <p:message for="telefono" id="msgTelefono" display="icon" />
+			            
+			            <p:outputLabel for="contacto" value="Contacto:" />
+			            <p:inputText id="contacto" value="#{crearClientesBean.dscontacto}" required="false" label="Contacto">
+			                <f:validateLength minimum="2" />
+			                <p:ajax update="msgContacto" event="keyup" />
+			            </p:inputText>
+			            <p:message for="contacto" id="msgContacto" display="icon" />
+			            
+			            <p:outputLabel for="activo" value="Activo:" />
+			            <p:selectOneMenu id="activo" value="#{crearClientesBean.snactivo}" style="width:150px">
+			                <f:selectItem itemLabel="Activo" itemValue="1" noSelectionOption="true" />
+			                <f:selectItem itemLabel="Inactivo" itemValue="0" noSelectionOption="true" />
+			                <f:selectItems value="#{crearClientesBean.snactivo}" />
+			            </p:selectOneMenu>
+			            <p:message for="activo" display="icon" />
+			            
+			            <p:outputLabel for="logo" value="Logo:" />
+			            <p:growl id="logo" showDetail="true" />
+			    		<p:fileUpload fileUploadListener="#{crearClientesBean.upLoad}" mode="advanced" dragDropSupport="false"
+           					update="logoImg" sizeLimit="10000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+			    		<p:message for="logo" display="icon" />
+			    		
+			    		<p:graphicImage id="logoImg" value="#{crearClientesBean.imagenLogo}" width="150" height="120" />
+			 			
+			        </h:panelGrid>
+			        
+					<p:commandButton value="Save" update="grid" actionListener="#{crearClientesBean.save}" icon="ui-icon-check" oncomplete="limpiarForm()" /> 			        
+			 		
+			    </p:panel>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

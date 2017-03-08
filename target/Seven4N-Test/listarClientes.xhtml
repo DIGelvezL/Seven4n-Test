@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Listar Clientes</title>
+</h:head>
+<h:body>
+	<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" template="/WEB-INF/plantillas/plantilla.xhtml">
+		<ui:define name="content">
+			<p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">
+				<f:facet name="start">
+					<h:graphicImage library="images" name="ajaxloading.gif" />
+				</f:facet>
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+			<h:form prependId="false" enctype="multipart/form-data">
+				<p:messages id="mess" showDetail="true" autoUpdate="true" closable="true" />
+				<p:growl id="messages" showDetail="true" />
+				<p:dataTable id="clientes" value="#{clienteBean.clientesVOList}" var="cliente" editable="true" rowKey="#{cliente.nmcliente}"
+                 		selection="#{clienteBean.clientesVO}" selectionMode="single">
+					<f:facet name="header">
+						Lista de Clientes
+					</f:facet>
+					<p:column headerText="Cedula">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.cdcliente}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.cdcliente}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Nombre">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.dsnombre}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.dsnombre}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Dirección">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.dsdireccion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.dsdireccion}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Usuario">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.cdusuario}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.cdusuario}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="eMail">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.dsmail}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.dsmail}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Telefono">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.cdtelefono}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.cdtelefono}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Contacto">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.dscontacto}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.dscontacto}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Fecha Registro">
+				        <h:outputText value="#{cliente.feregistro}">
+				        	<f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
+			        	</h:outputText>
+				    </p:column>
+					<p:column headerText="Fecha Baja">
+				        <h:outputText value="#{cliente.febaja}" >
+				        	<f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
+			        	</h:outputText>
+				    </p:column>
+					<p:column headerText="Estado">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{cliente.snactivo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cliente.snactivo}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Logo">
+						<p:graphicImage id="logoImg" value="#{cliente.dslogo}" width="150" height="120" />
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton value="Regresar" id="regresarButton" action="index" ajax="false" />
+					</f:facet>
+					<p:column headerText="Opciones" style="width:50px">
+						<p:rowEditor />
+					</p:column>
+					<p:ajax event="rowEdit" listener="#{clienteBean.editClientes}">
+					</p:ajax>
+				</p:dataTable>
+				
+				<p:contextMenu for="clientes">
+			        <p:menuitem value="Delete" update="clientes" icon="ui-icon-close" actionListener="#{clienteBean.eliminarCliente}"/>
+			    </p:contextMenu>
+    
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

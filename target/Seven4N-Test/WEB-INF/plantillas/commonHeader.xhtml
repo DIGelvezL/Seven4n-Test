@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition>
+
+		<h1>Sistema de Gestión de Seven4N</h1>
+		<h:form>
+			<p:commandButton value="Crear clientes" action="crearClientes" icon="ui-icon-person" ajax="false" />
+			<p:commandButton value="Cargar archivos" action="cargarArchivos" icon="ui-icon-document" ajax="false" />
+			<p:commandButton value="Listar clientes" action="listarClientes" icon="ui-icon-search" ajax="false" />
+		</h:form>
+		
+	</ui:composition>
+</body>
+</html>

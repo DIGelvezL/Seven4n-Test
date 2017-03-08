@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="base.css"/>
+        <!-- <link href="./resources/css/estilos.css" rel="stylesheet" type="text/css"/> -->  
+        <link href="./resources/css/normalize.css" rel="stylesheet" type="text/css"></link>
+        <link href="./resources/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+        <link href="./resources/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></link> 
+    </h:head>
+
+    <h:body>
+    	<header>
+    		<div id="header">
+				<ui:insert name="header" >
+		  			<ui:include src="/WEB-INF/plantillas/commonHeader.xhtml" />
+				</ui:insert>
+			</div>
+    	</header>
+
+        <div id="page">
+        	<ui:insert name="content">Contenido</ui:insert>
+        </div>
+        
+        <nav >
+        	<p>Derechos Reservados 2016 - Daniel Iván Gélvez León </p>
+		    <ul>
+                <h:form><li><p:commandButton value="Home" id="homeButton" action="index" ajax="false" /></li></h:form>
+		    </ul>
+		</nav>
+        
+    </h:body>
+
+</html>
+
